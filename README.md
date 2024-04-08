@@ -35,7 +35,7 @@ The script prints the probability of reaching tier 12 and the total run time. It
 - Python 3.9+
 - numpy
 - multiprocessing
-  for notebook:
+for notebook:
 - matplotlib
 - re
 - pandas
