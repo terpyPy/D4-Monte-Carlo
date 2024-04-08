@@ -1,0 +1,205 @@
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 11
+    p = 0.01905
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 12
+    p = 0.04409
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 13
+    p = 0.08823
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 14
+    p = 0.15369
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 15
+    p = 0.24205
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 16
+    p = 0.34505
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 17
+    p = 0.45647
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 18
+    p = 0.5719
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 19
+    p = 0.67344
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 20
+    p = 0.76353
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 21
+    p = 0.83605
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 22
+    p = 0.89576
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 23
+    p = 0.93369
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 24
+    p = 0.96134
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 25
+    p = 0.97734
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 26
+    p = 0.98732
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 27
+    p = 0.99392
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 28
+    p = 0.99708
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 29
+    p = 0.99848
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 30
+    p = 0.99942
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 1
+    p = 0.0
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 2
+    p = 0.0
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 3
+    p = 0.0
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 4
+    p = 0.0
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 5
+    p = 0.0
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 6
+    p = 0.0
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 7
+    p = 0.0
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 8
+    p = 0.00013
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 9
+    p = 0.00172
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 10
+    p = 0.00653
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 11
+    p = 0.01946
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 12
+    p = 0.04461
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 13
+    p = 0.08889
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 14
+    p = 0.15476
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 15
+    p = 0.24
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 16
+    p = 0.34213
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 17
+    p = 0.45901
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 18
+    p = 0.56788
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 19
+    p = 0.67119
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 20
+    p = 0.7631
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 21
+    p = 0.83893
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 22
+    p = 0.89415
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 23
+    p = 0.93409
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 24
+    p = 0.96132
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 25
+    p = 0.97772
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 26
+    p = 0.98815
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 27
+    p = 0.99423
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 28
+    p = 0.99715
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 29
+    p = 0.99855
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 19
+    p = 0.67229
+
+Probability of reaching tier 12 using permutations: 100000 
+    max attempts per iteration: 25
+    p = 0.97804
+

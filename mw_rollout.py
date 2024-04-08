@@ -1,3 +1,5 @@
+import os
+import pickle
 import numpy as np
 
 
@@ -23,7 +25,8 @@ def upgrade_mw_tier(max_up_attempts=15):
         if level == MAX_LEVEL:
             break
         
-        event = np.random.choice([False, True], p=[1-upgrade_probs[level], upgrade_probs[level]])
+        p_t = upgrade_probs[level]
+        event = np.random.choice([False, True], p=[1-p_t, p_t])
         if event:
             level += 1
         else:
@@ -51,26 +54,41 @@ class Sim:
         n, kargs = args
         return [self.target_sim(**kargs) for _ in range(n)]
 
+def save_results(results, filename):
+    # Ensure filename is just a filename, not a path
+    filename = os.path.basename(filename)
+    
+    # Construct the full path safely
+    full_path = os.path.join(os.getcwd(), filename)
+
+    with open(full_path, 'wb') as f:
+        pickle.dump(results, f)
+    print(f'results array saved to {filename}')
 
 def pooled_simulation(sim, n, **kargs):
     """helper function to prepare and run simulations in parallel using multiprocessing.Pool."""
     from multiprocessing import Pool, cpu_count
     s = Sim(sim)
-    # start = time.time()
     num_processors = cpu_count()
     pool = Pool(processes=num_processors)
     trials_per_worker = n // num_processors
+    # 
+    # print(f'iterations per worker (n_cpu: {num_processors}): {trials_per_worker}')
+    total = []
     if kargs:
         results = pool.map(s.run_with_kargs, 
                            [(trials_per_worker, dict(**kargs))]*num_processors)
+        results = sum(results, [])
         # we can check the p of other tiers by changing the integer in the line below
         total = np.sum(np.array(results) == 12)/n
         outstr = f'Probability of reaching tier 12 using permutations: {n} \n'
-        # simple formatting for output
-        # outstr += f'    iterations per worker (n_cpu: {num_processors}): {trials_per_worker}\n'
         outstr += f'    max attempts per iteration: {kargs["max_up_attempts"]}\n'
         outstr += f'    p = {total}\n'
-        
+        # save outstr to a text file
+        with open('sim_results.txt', 'a') as f:
+            f.write(outstr)
+            f.write('\n')
+        f.close()
     else:
         # no kargs, default to simple simulation whose return value is 1 or 0, success or failure,
         # not an array representing multilevel outcomes like the upgrade_mw_tier function
@@ -78,15 +96,15 @@ def pooled_simulation(sim, n, **kargs):
                            [trials_per_worker]*num_processors)
         total = sum(results)/n
         outstr = f'Probability of event happening: {total} \n'
-        outstr += f'trials per worker (n_cpu: {num_processors}): {trials_per_worker}'
 
     print(outstr)
-    # e_time = time.time() - start
-    # print(f'Run Time: {e_time : .6f} seconds')
-
+    pool.close()
+    pool.join()
+    return results
+    
 
 if __name__ == "__main__":
-    # import time
+    import time
     import argparse
     parser = argparse.ArgumentParser(description='Run Monte Carlo Simulations')
     #
@@ -95,17 +113,27 @@ if __name__ == "__main__":
     parser.add_argument('sim',
                         type=str,
                         help='example usage cmd: python mw_rollout.py upgrade_mw_tier',
-                        choices=[upgrade_mw_tier.__name__])
+                        choices=[upgrade_mw_tier.__name__, 'run_mw_batch'])
     args = parser.parse_args()
     # example usage cmd: python mw_rollout.py upgrade_mw_tier
     if args.sim == upgrade_mw_tier.__name__:
         print(f'running simulations')
-        pooled_simulation(upgrade_mw_tier, 100000, max_up_attempts=25)
-            
-    #
+        start = time.time()
+        data = pooled_simulation(upgrade_mw_tier, 100000, max_up_attempts=25)
+        e_time = time.time() - start
+        print(f'Run Time: {e_time : .6f} seconds')
+        save_results(data, 'results.pkl')
+    
     # add more simulations here, such as a new version of the current masterwork tier upgrade simulation.
-    # elif args.sim == upgrade_mw_tier_with_protection.__name__:
-    #     pooled_simulation(upgrade_mw_tier_with_protection, 100000, max_up_attempts=30)
+    elif args.sim == 'run_mw_batch':
+        for i in range(1, 30):
+            print(f'running simulations for max_up_attempts = {i}')
+            start = time.time()
+            data = pooled_simulation(upgrade_mw_tier, 100000, max_up_attempts=i)
+            e_time = time.time() - start
+            print(f'Run Time: {e_time : .6f} seconds')
+            save_results(data, f'results_{i}.pkl')
+            time.sleep(0.1)
 
     else:
         print(f'Invalid Simulation Name: {args.sim}')
