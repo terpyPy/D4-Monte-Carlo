@@ -1,5 +1,4 @@
-import os
-import pickle
+import ftools as ft
 import numpy as np
 
 
@@ -54,16 +53,6 @@ class Sim:
         n, kargs = args
         return [self.target_sim(**kargs) for _ in range(n)]
 
-def save_results(results, filename):
-    # Ensure filename is just a filename, not a path
-    filename = os.path.basename(filename)
-    
-    # Construct the full path safely
-    full_path = os.path.join(os.getcwd(), filename)
-
-    with open(full_path, 'wb') as f:
-        pickle.dump(results, f)
-    print(f'results array saved to {filename}')
 
 def pooled_simulation(sim, n, **kargs):
     """helper function to prepare and run simulations in parallel using multiprocessing.Pool."""
@@ -122,19 +111,22 @@ if __name__ == "__main__":
         data = pooled_simulation(upgrade_mw_tier, 100000, max_up_attempts=25)
         e_time = time.time() - start
         print(f'Run Time: {e_time : .6f} seconds')
-        save_results(data, 'results.pkl')
+        ft.save_results(data, 'results.pkl', 'test_files')
     
     # add more simulations here, such as a new version of the current masterwork tier upgrade simulation.
+    
     elif args.sim == 'run_mw_batch':
+        results = []
         for i in range(1, 30):
             print(f'running simulations for max_up_attempts = {i}')
             start = time.time()
             data = pooled_simulation(upgrade_mw_tier, 100000, max_up_attempts=i)
             e_time = time.time() - start
             print(f'Run Time: {e_time : .6f} seconds')
-            save_results(data, f'results_{i}.pkl')
+            # ft.save_results(data, f'results_{i}.pkl', 'test_files')
+            results.append(data)
             time.sleep(0.1)
-
+        ft.save_results(results, '2d_set.pkl', 'test_files')
     else:
         print(f'Invalid Simulation Name: {args.sim}')
         exit()

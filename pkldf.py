@@ -1,23 +1,9 @@
 import os
-import pickle
 import glob
 import pandas as pd
+import ftools as ft
 
-def load_plk_results(filename, directory=''):
-    # Ensure filename is just a filename, not a path
-    filename = os.path.basename(filename)
-    if directory == '':
-        
-        # Construct the full path safely
-        full_path = os.path.join(os.getcwd(), filename)
-        
-    else:
-        full_path = os.path.join(os.getcwd(), directory+"\\"+filename)
 
-    with open(full_path, 'rb') as f:
-        results = pickle.load(f)
-        
-    return results
 
 class PklManager(list):
     def __init__(self, directory, pattern='*_*.pkl'):
@@ -37,9 +23,14 @@ class PklManager(list):
         
     def load_all(self):
         """inplace, load all the pickle files we found in the directory."""
-        for file in self.files:
-            colmn_name = file.split('\\')[-1].split('.')[0]
-            self.results[colmn_name] = load_plk_results(file, self.directory)
+        if len(self.files) == 1:
+            self.results = ft.load_plk_results(self.files[0], self.directory)
+        
+        else:    
+            
+            for file in self.files:
+                colmn_name = file.split('\\')[-1].split('.')[0]
+                self.results[colmn_name] = ft.load_plk_results(file, self.directory)
             
     def get_results(self):
         return self.results
@@ -54,7 +45,9 @@ class PklManager(list):
         '''sort in place on files list. k is a function that takes a filename and returns a key to sort on.'''
         self.files.sort(key=k)
 
-    def as_df(self):
+    def as_df(self, transpose=False):
         """Convert the results to a DataFrame. load_all() must be called first, otherwise it will return an empty DataFrame."""
+        if transpose:
+            return pd.DataFrame(self.results).T
         return pd.DataFrame(self.results)
     
